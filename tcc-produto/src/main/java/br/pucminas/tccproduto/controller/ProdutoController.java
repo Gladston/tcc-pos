@@ -13,16 +13,16 @@ import br.pucminas.tccproduto.repositorio.ProdutoRepository;
 @RequestMapping("produtos")
 public class ProdutoController {
 	
-//	@Autowired
-//	private ProdutoRepository repository;
+	@Autowired
+	private ProdutoRepository repository;
 
 	@RequestMapping("/teste")
     public String teste() {
         return "Hello from EurekaClient!";
     }
 	
-//	@RequestMapping("/")
-//	public List<Produto> list() {
-//		return this.repository.findAll();
-//	}
+	@RequestMapping("/")
+	public List<Produto> list() {
+		return this.repository.findAll();
+	}
 }
