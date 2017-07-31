@@ -14,5 +14,6 @@
   	<module>tcc-produto</module>
   	<module>tcc-ordem-compra</module>
   	<module>tcc-descoberta-servico</module>
+  	<module>tcc-client</module>
   </modules>
 </project>
