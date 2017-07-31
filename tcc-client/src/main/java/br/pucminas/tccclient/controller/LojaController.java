@@ -12,8 +12,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import br.pucminas.tccclient.cliente.carrinho.CarrinhoCompraService;
 import br.pucminas.tccclient.cliente.carrinho.OrdemCompra;
 import br.pucminas.tccclient.cliente.carrinho.Produto;
+import br.pucminas.tccclient.cliente.ordemCompra.OrdemCompraService;
 import br.pucminas.tccclient.cliente.produto.ProdutoService;
-import br.pucminas.tccclient.ordemCompra.OrdemCompraService;
 
 @RestController
 @RequestMapping("loja")

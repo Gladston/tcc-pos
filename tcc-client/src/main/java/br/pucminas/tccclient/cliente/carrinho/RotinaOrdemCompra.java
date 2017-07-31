@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import br.pucminas.tccclient.ordemCompra.OrdemCompraService;;
+import br.pucminas.tccclient.cliente.ordemCompra.OrdemCompraService;;
 
 @Component
 public class RotinaOrdemCompra {

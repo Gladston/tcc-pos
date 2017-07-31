@@ -1,4 +1,4 @@
-package br.pucminas.tccclient.ordemCompra;
+package br.pucminas.tccclient.cliente.ordemCompra;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
