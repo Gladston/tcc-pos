@@ -13,6 +13,7 @@ import br.pucminas.tccclient.cliente.carrinho.CarrinhoCompraService;
 import br.pucminas.tccclient.cliente.carrinho.OrdemCompra;
 import br.pucminas.tccclient.cliente.carrinho.Produto;
 import br.pucminas.tccclient.cliente.produto.ProdutoService;
+import br.pucminas.tccclient.ordemCompra.OrdemCompraService;
 
 @RestController
 @RequestMapping("loja")
@@ -20,6 +21,18 @@ public class LojaController {
 
 	@Autowired private ProdutoService produtoCliente;
 	@Autowired private CarrinhoCompraService carrinhoCliente;
+	@Autowired private OrdemCompraService ordemCliente;
+	
+	@RequestMapping("/ordens_compra/")
+	@ResponseBody
+	public String listaOrdens() {
+		return ordemCliente.list();
+	}
+	
+	@RequestMapping(value ="/ordens_compra/{id}", method = RequestMethod.PATCH)
+	public void atualizaCartaoCreditoOrdemCompra(@PathVariable("id") int id, @RequestBody OrdemCompra ordemCompra) {
+		ordemCliente.atualizaCartaoCreditoOrdemCompra(id, ordemCompra);
+	}
 	
 	@RequestMapping("/produtos")
     public String listaProdutos() {
