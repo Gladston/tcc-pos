@@ -102,7 +102,13 @@ public class Carrinho implements Serializable {
 			produtos = new HashSet<>();
 		}
 		
-		this.produtos.add(produto);
+		this.produtos.forEach(item -> {
+			if(item.getCodigo() == produto.getCodigo()) {
+				item.setQuantidade(item.getQuantidade() + 1);
+			} else {
+				this.produtos.add(produto);
+			}
+		});
 	}
 
 	public String getSessionId() {
