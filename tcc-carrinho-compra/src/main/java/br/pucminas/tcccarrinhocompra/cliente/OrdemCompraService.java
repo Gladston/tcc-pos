@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import br.pucminas.tcccarrinhocompra.dominio.Carrinho;
+import br.pucminas.tcccarrinhocompra.repositorio.CarrinhoRepository;
 import br.pucminas.tcccarrinhocompra.repositorio.OrdemCompraRepository;
 
 @Service
@@ -21,6 +22,7 @@ public class OrdemCompraService {
 
 	@Autowired private FeignOrdemCompraCliente ordemCliente;
 	@Autowired private OrdemCompraRepository ordemRepository;
+	@Autowired private CarrinhoRepository carrinhoRepository;
 
 	@Transactional
 	public void criaOrdemCompra(br.pucminas.tcccarrinhocompra.dominio.OrdemCompra ordemCompra) {
@@ -33,6 +35,10 @@ public class OrdemCompraService {
 				new br.pucminas.tcccarrinhocompra.cliente.OrdemCompra(ordemCompra.getCartaoCredito(), produtos);
 		
 		ordemCliente.criaOrdemCompra(ordem);
+		
+		Carrinho carrinho = ordemCompra.getCarrinho();
+		carrinho.setStatus(false);
+    	this.carrinhoRepository.save(carrinho);
 		ordemRepository.excluiOrdemCompra(ordemCompra.getId());
 	}
 	
@@ -40,7 +46,12 @@ public class OrdemCompraService {
     public String criaOrdemCompra(Carrinho carrinho, String cartaoCredito) {
 		OrdemCompra ordem = getOrdemCompraCliente(carrinho, cartaoCredito);
 		
-    	return ordemCliente.criaOrdemCompra(ordem);
+    	String ordemCompra = ordemCliente.criaOrdemCompra(ordem);
+    	
+    	carrinho.setStatus(false);
+    	this.carrinhoRepository.save(carrinho);
+    	
+    	return ordemCompra;
     }
 
 	private OrdemCompra getOrdemCompraCliente(Carrinho carrinho, String cartaoCredito) {

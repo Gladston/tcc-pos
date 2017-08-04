@@ -49,7 +49,7 @@ public class CarrinhoCompraService {
     	
     	JSONObject json = new JSONObject();
     	try {
-			json.put("ordemCompra", ordemCompra.getCartaoCredito());
+			json.put("cartaoCredito", ordemCompra.getCartaoCredito());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
